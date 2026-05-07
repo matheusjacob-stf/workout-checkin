@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Academia Check-in</title>
+    <title>Gym Check-in</title>
     <style>
         * {
             margin: 0;
@@ -129,15 +129,15 @@
 </head>
 <body>
     <div class="container">
-        <h1>Fui na Academia Hoje!</h1>
+        <h1>I Went to the Gym Today!</h1>
         <span class="emoji">💪</span>
         <div class="counter" id="counter">0</div>
-        <div class="label">vezes esse mês</div>
+        <div class="label">times this month</div>
         <button class="btn" id="checkInBtn" onclick="addCheckIn()">
-            Check-in na Academia
+            Gym Check-in
         </button>
         <br>
-        <button class="reset-btn" onclick="resetCounter()">Resetar Contador</button>
+        <button class="reset-btn" onclick="resetCounter()">Reset Counter</button>
     </div>
 
     <script>
@@ -177,12 +177,13 @@
         }
 
         function resetCounter() {
-            if (confirm('Tem certeza que deseja resetar o contador?')) {
+            if (confirm('Are you sure you want to reset the counter?')) {
                 count = 0;
                 document.getElementById('counter').textContent = count;
                 localStorage.setItem('workoutCount', count);
             }
         }
     </script>
-</body>
+  <script src="/__og-inspector.js"></script>
+  </body>
 </html>
