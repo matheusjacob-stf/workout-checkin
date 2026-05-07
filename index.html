@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academia Check-in</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            padding: 60px 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            color: #333;
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .emoji {
+            font-size: 4rem;
+            margin: 20px 0;
+            display: block;
+        }
+
+        .counter {
+            font-size: 5rem;
+            font-weight: bold;
+            color: #667eea;
+            margin: 30px 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .label {
+            color: #666;
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 20px 50px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6);
+        }
+
+        .btn:active {
+            transform: translateY(-1px);
+        }
+
+        .celebration {
+            position: fixed;
+            font-size: 3rem;
+            pointer-events: none;
+            animation: float 1s ease-out forwards;
+        }
+
+        @keyframes float {
+            0% {
+                opacity: 1;
+                transform: translateY(0) rotate(0deg);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100px) rotate(20deg);
+            }
+        }
+
+        .reset-btn {
+            margin-top: 20px;
+            background: transparent;
+            color: #999;
+            border: 2px solid #ddd;
+            padding: 10px 30px;
+            font-size: 0.9rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .reset-btn:hover {
+            border-color: #667eea;
+            color: #667eea;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Fui na Academia Hoje!</h1>
+        <span class="emoji">💪</span>
+        <div class="counter" id="counter">0</div>
+        <div class="label">vezes esse mês</div>
+        <button class="btn" id="checkInBtn" onclick="addCheckIn()">
+            Check-in na Academia
+        </button>
+        <br>
+        <button class="reset-btn" onclick="resetCounter()">Resetar Contador</button>
+    </div>
+
+    <script>
+        let count = localStorage.getItem('workoutCount') || 0;
+        count = parseInt(count);
+        document.getElementById('counter').textContent = count;
+
+        function addCheckIn() {
+            count++;
+            document.getElementById('counter').textContent = count;
+            localStorage.setItem('workoutCount', count);
+            
+            celebrate();
+            
+            const btn = document.getElementById('checkInBtn');
+            btn.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                btn.style.transform = 'scale(1)';
+            }, 100);
+        }
+
+        function celebrate() {
+            const emojis = ['💪', '🔥', '⭐', '✨', '🎉', '👏', '💯'];
+            const emoji = emojis[Math.floor(Math.random() * emojis.length)];
+            
+            const celebration = document.createElement('div');
+            celebration.className = 'celebration';
+            celebration.textContent = emoji;
+            celebration.style.left = Math.random() * window.innerWidth + 'px';
+            celebration.style.top = window.innerHeight / 2 + 'px';
+            
+            document.body.appendChild(celebration);
+            
+            setTimeout(() => {
+                celebration.remove();
+            }, 1000);
+        }
+
+        function resetCounter() {
+            if (confirm('Tem certeza que deseja resetar o contador?')) {
+                count = 0;
+                document.getElementById('counter').textContent = count;
+                localStorage.setItem('workoutCount', count);
+            }
+        }
+    </script>
+</body>
+</html>
