@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gym Check-in</title>
+    <title>Check-in na Academia</title>
     <style>
         * {
             margin: 0;
@@ -125,19 +125,26 @@
             border-color: #667eea;
             color: #667eea;
         }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: #a0aec0;
+            margin: 0 0 1rem 0;
+            font-style: italic;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>I Went to the Gym Today!</h1>
+        <h1>Academia Checkin</h1>
+        <p class="subtitle">Cada treino conta. Não pare agora! 🔥</p>
         <span class="emoji">💪</span>
         <div class="counter" id="counter">0</div>
-        <div class="label">times this month</div>
         <button class="btn" id="checkInBtn" onclick="addCheckIn()">
-            Gym Check-in
+            Check-in na Academia
         </button>
         <br>
-        <button class="reset-btn" onclick="resetCounter()">Reset Counter</button>
+        <button class="reset-btn" onclick="resetCounter()">Resetar Contador</button>
     </div>
 
     <script>
@@ -177,7 +184,7 @@
         }
 
         function resetCounter() {
-            if (confirm('Are you sure you want to reset the counter?')) {
+            if (confirm('Tem certeza que deseja resetar o contador?')) {
                 count = 0;
                 document.getElementById('counter').textContent = count;
                 localStorage.setItem('workoutCount', count);
